@@ -31,7 +31,13 @@ class python::install {
     default => absent,
   }
 
-  $pip_ensure = $python::pip ? {
+  if ($python::pip or $python::uwsgi) {
+    $pip_ensure =  present
+  } else {
+    $pip_ensure =  absent
+  }
+
+  $uwsgi_ensure = $python::uwsgi ? {
     true    => present,
     default => absent,
   }
@@ -63,6 +69,10 @@ class python::install {
       default => absent,
     }
     package { 'gunicorn': ensure => $gunicorn_ensure }
+  }
+
+  if ! defined(Package['gcc']) {
+    package { 'gcc': ensure => present }
   }
 
 }

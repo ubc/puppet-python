@@ -31,6 +31,7 @@
 #   dev        => true,
 #   virtualenv => true,
 #   gunicorn   => true,
+#   uwsgi      => true,
 # }
 #
 # === Authors
@@ -44,7 +45,10 @@ class python (
   $virtualenv      = false,
   $gunicorn        = false,
   $manage_gunicorn = true,
-  $provider        = undef
+  $provider        = undef,
+  $uwsgi           = false,
+  $uwsgi_cfg       = undef,
+  $uwsgi_owner     = nginx,
 ) {
 
   # Module compatibility check
