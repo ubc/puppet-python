@@ -1,5 +1,6 @@
-[puppet-python](https://github.com/stankevich/puppet-python)
-======
+# puppet-python #
+
+[![Build Status](https://travis-ci.org/stankevich/puppet-python.svg?branch=master)](https://travis-ci.org/stankevich/puppet-python)
 
 Puppet module for installing and managing python, pip, virtualenvs and Gunicorn virtual hosts.
 
@@ -16,20 +17,24 @@ Currently, the changes you need to make are as follows:
 
 ## Installation
 
+```shell
+git submodule add https://github.com/stankevich/puppet-python.git /path/to/python
+```
+OR
+
 ``` shell
-cd /etc/puppet/modules
-git clone git://github.com/stankevich/puppet-python.git python
+puppet module install stankevich-python
 ```
 
 ## Usage
 
 ### python
 
-Installs and manages python, python-dev, python-virtualenv and Gunicorn.
+Installs and manages python, python-pip, python-dev, python-virtualenv and Gunicorn.
 
 **version** - Python version to install. Default: system default
 
-**pip** - Install python-pip. Default: false
+**pip** - Install python-pip. Default: true
 
 **dev** - Install python-dev. Default: false
 
@@ -42,10 +47,11 @@ Installs and manages python, python-dev, python-virtualenv and Gunicorn.
 ```puppet
   class { 'python':
     version    => 'system',
+    pip        => true,
     dev        => true,
     virtualenv => true,
     gunicorn   => true,
-  }	}
+  }
 ```
 
 ### python::pip

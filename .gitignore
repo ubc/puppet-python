@@ -1,5 +1,7 @@
 pkg/
-
-# ignore rbvenv files used for puppet-lint, rspect etc.
-.ruby-version
-.rbenv-gemsets
+Gemfile.lock
+vendor/
+spec/fixtures/
+.vagrant/
+.bundle/
+coverage/
